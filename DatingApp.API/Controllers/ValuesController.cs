@@ -13,9 +13,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using DatingApp.API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     [ApiController]
     //POST http://localhost5000/api/values/5
     [Route("api/[controller]")]
@@ -32,6 +34,7 @@ namespace DatingApp.API.Controllers
             return Ok(values);
         }
         //Get api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
